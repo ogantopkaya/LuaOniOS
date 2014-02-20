@@ -7,16 +7,41 @@
 //
 
 #import "AppDelegate.h"
+#import "RootViewController.h"
+#import "NSString+Paths.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+    [self copyResourcesToDocumentsFolder];
+    
+    self.rootViewController = [[RootViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+    self.window.rootViewController = self.rootViewController;
+    
+    
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)copyResourcesToDocumentsFolder{
+    NSArray *paths = [[NSBundle mainBundle] pathsForResourcesOfType:@"lua" inDirectory:@"."];
+    NSString *documentsPath = [NSString applicationDocumentsDirectory];
+    
+    [paths enumerateObjectsUsingBlock:^(NSString *path, NSUInteger i, BOOL *stop) {
+        NSString *lastComponent = [path lastPathComponent];
+        NSString *newPath = [documentsPath stringByAppendingPathComponent:lastComponent];
+
+#warning - Remove Later
+        if ([[NSFileManager defaultManager] fileExistsAtPath:newPath isDirectory:NULL]) {
+            [[NSFileManager defaultManager] removeItemAtPath:newPath error:NULL];
+        }
+        
+        [[NSFileManager defaultManager] copyItemAtPath:path toPath:newPath error:NULL];
+    }];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -47,3 +72,6 @@
 }
 
 @end
+
+
+
