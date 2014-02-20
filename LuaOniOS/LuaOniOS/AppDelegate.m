@@ -35,10 +35,11 @@
         NSString *lastComponent = [path lastPathComponent];
         NSString *newPath = [documentsPath stringByAppendingPathComponent:lastComponent];
 
-#warning - Remove Later
-        if ([[NSFileManager defaultManager] fileExistsAtPath:newPath isDirectory:NULL]) {
-            [[NSFileManager defaultManager] removeItemAtPath:newPath error:NULL];
-        }
+//Overrides the changed script
+//#warning - Remove Later
+//        if ([[NSFileManager defaultManager] fileExistsAtPath:newPath isDirectory:NULL]) {
+//            [[NSFileManager defaultManager] removeItemAtPath:newPath error:NULL];
+//        }
         
         [[NSFileManager defaultManager] copyItemAtPath:path toPath:newPath error:NULL];
     }];
