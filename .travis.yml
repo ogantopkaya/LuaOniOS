@@ -1,4 +1,9 @@
-language: objective-c
-xcode_project: LuaOniOS.xcodeproj # path to your xcodeproj folder
-xcode_scheme: LuaOniOS
 
+language: objective-c
+
+notifications:
+  email:
+    - ogan@peakgames.net
+
+script:
+- xctool -project LuaOniOS/LuaOniO.xcodeproj -scheme LuaOniOS -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
