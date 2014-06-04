@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<testsuites name="AllTestUnits" tests="1" failures="0" errors="0" time="0.000309">
+    <testsuite tests="1" failures="0" errors="0" time="0.000309" timestamp="2014-06-04T18:59:50GMT+03:00" name="Toplevel Test Suite">
+        <testcase classname="LuaOniOSTests" name="testExample" time="0.000091"></testcase>
+    </testsuite>
+</testsuites>
